@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Calendar } from "lucide-react" // HelpCircle removed
+import { Menu, X, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { siteData } from "@/data/siteData"
 
@@ -26,7 +26,7 @@ export default function Navigation() {
         scrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
-       <div className="max-w-7xl mx-auto container-padding">
+      <div className="max-w-7xl mx-auto container-padding">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 flex items-center justify-center">

@@ -13,13 +13,21 @@ import {
   ChevronRight, 
   Calendar,
   MapPin,
-  Users,
-  BookOpen,
-  Heart,
   Award,
-  Zap
+  Heart
 } from "lucide-react"
 import ScrollAnimation from "@/components/ScrollAnimation"
+
+// Resim veri tipi tanımlaması
+interface GalleryImage {
+  id: number
+  category: string
+  imageUrl: string
+  title: string
+  description: string
+  alt: string
+  src: string
+}
 
 // Galeri verileri - gerçek projede bu veri bir API'den gelecek
 const galleryData = {
@@ -36,7 +44,7 @@ const galleryData = {
       name: "Sertifikalar",
       description: "Eğitim ve sertifikalarım",
       icon: Award,
-      count: 32
+      count: 33 // Güncellendi: 32 + 1 yeni png
     }
   ],
   images: [
@@ -51,22 +59,33 @@ const galleryData = {
       src: "/Ofis.jpg"
     },
     
-    // Sertifikalar kategorisi
+    // Sertifikalar kategorisi (Otomatik oluşturulan 1-32 arası .jpg dosyaları)
     ...Array.from({ length: 32 }, (_, i) => ({
-      id: i + 2, // Starting from 2 since 1 is used for the office photo
+      id: i + 2, // 1 ofis olduğu için 2'den başlıyor (ID 2 - 33 arası)
       category: "certificates",
       imageUrl: `/sertifika (${i + 1}).jpg`,
       title: `Sertifika ${i + 1}`,
       description: `Eğitim ve sertifikalarımdan örnek ${i + 1}`,
       alt: `Sertifika ${i + 1}`,
-      src: `/sertifika (${i + 1}).jpg` // Add src property for compatibility
-    }))
+      src: `/sertifika (${i + 1}).jpg`
+    })),
+
+    // Manuel olarak eklenen 33. Sertifika (.png uzantılı)
+    {
+      id: 34, // Önceki döngü ID 33'te bittiği için ID 34
+      category: "certificates",
+      imageUrl: "/sertifika(33).png",
+      title: "Sertifika 33",
+      description: "Eğitim ve sertifikalarımdan örnek 33",
+      alt: "Sertifika 33",
+      src: "/sertifika(33).png"
+    }
   ]
 }
 
 export default function GaleriPage() {
   const [activeCategory, setActiveCategory] = useState("all")
-  const [selectedImage, setSelectedImage] = useState<{id: number; category: string; imageUrl: string; title: string; description: string; alt: string; src: string} | null>(null)
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
   // Filtrelenmiş resimler
@@ -75,7 +94,7 @@ export default function GaleriPage() {
     : galleryData.images.filter(img => img.category === activeCategory)
 
   // Lightbox fonksiyonları
-  const openLightbox = (image, index) => {
+  const openLightbox = (image: GalleryImage, index: number) => {
     setSelectedImage(image)
     setLightboxIndex(index)
   }
