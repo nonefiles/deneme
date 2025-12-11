@@ -150,6 +150,7 @@ export const siteData = {
     { name: "Hakkımda", href: "/hakkimda" },
     { name: "Randevu", href: "/randevu" },
     { name: "Galeri", href: "/galeri" },
+    { name: "Danışan Görüşleri", href: "/danisan-gorusleri" },
     { name: "SSS", href: "/sss" },
     { name: "İletişim", href: "/iletisim" },
   ],
