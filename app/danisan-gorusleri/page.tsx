@@ -161,7 +161,7 @@ export default function DanisanGorusleriPage() {
               
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <a 
-                  href="https://g.page/r/your-google-review-link" // BURAYA GOOGLE YORUM LİNKİNİZİ EKLEYİN
+                  href="https://search.google.com/local/writereview?placeid=ChIJTXtZmDgiXw4RvFBWi-AhPMk"
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
